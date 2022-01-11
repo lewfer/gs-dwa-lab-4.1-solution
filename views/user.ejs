@@ -1,0 +1,24 @@
+<!doctype html>
+<html>
+  <head>
+    <title><%=forumName%> - User</title>
+    <link rel="stylesheet" type="text/css" href="/main.css" />
+  </head>
+  <body>
+    <h1><%=forumName%></h1>
+    <h2>User</h2>
+    <p>Username: <%= user.username%></p>
+    <p>Name: <%= user.firstname%> <%= user.surname%></p>
+    <p>Country: <%= user.country%></p>
+    <p></p>
+    <table>
+      <tr><th>Topic</th><th>Description</th></tr>
+      <% topics.forEach(function(topic) { %>
+        <tr>
+          <td><%= topic.topic_title %></td>
+          <td><%= topic.topic_description %></td>
+        </tr>
+      <% }) %>    
+    </table>    
+  </body>
+</html>

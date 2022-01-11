@@ -1,0 +1,32 @@
+<!doctype html>
+<html>
+  <head>
+    <title><%=forumName%> - Posts</title>
+    <link rel="stylesheet" type="text/css" href="/main.css" />
+    <script>
+      function confirmDelete(post_id) {
+        var yes = confirm("Are you sure you want to delete this post");
+        if (yes) {
+          window.location.href = "delete/" + post_id;
+        }
+      }
+    </script>
+  </head>
+  <body>
+    <h1><%=forumName%></h1>
+    <h2>View posts</h2>
+    <table>
+        <tr><th>Date</th><th>Topic</th><th>Title</th><th>Content</th><th>Username</th></tr>
+        <% posts.forEach(function(post) { %>
+          <tr>
+            <td><%= post.post_date.toDateString() %> <%= post.post_date.getHours() %>:<%= post.post_date.getMinutes() %></td>
+            <td><a href="/viewpostsfortopic/<%= post.topic_id %>"><%= post.topic_title %></a></td>
+            <td><a href="/post/<%= post.post_id %>"><%= post.post_title %></a></td>
+            <td><%= post.post_content %></td>            
+            <td><a href="/viewpostsforuser/<%= post.user_id %>"><%= post.username %></a></td>
+            <td><a onclick="confirmDelete(<%= post.post_id %>)" href='#'>del</a></td>
+          </tr>
+        <% }) %>    
+  </table>   
+  </body>
+</html>
